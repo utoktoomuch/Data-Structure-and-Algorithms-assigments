@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="COEN352_ASS1" />
+        <module name="COEN352_Assignments" />
       </profile>
     </annotationProcessing>
   </component>
