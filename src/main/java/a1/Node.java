@@ -4,9 +4,8 @@ public class Node<K,E> {
     private K k;
     private E v;
     private Node<K,E> next;
-    private Node<K, E> prev;
 
-    Node(K key, E val, Node<K,E> nextval){
+    Node(K key, E val, Node<K, E> nextval){
         k = key;
         v = val;
         next = nextval;
@@ -21,45 +20,24 @@ public class Node<K,E> {
         return next;
     }
 
-    Node<K,E> setNext(Node<K,E> nextval){
+    Node<K,E> setNext(Node<K,E> nextval) {
         return next = nextval;
-    }
-
-    Node<K, E> prev() {
-        return prev;
-    }
-
-    Node<K, E> setPrev(Node<K, E> prevval){
-        return prev = prevval;
     }
     K k(){
         return k;
     }
 
+    K setK(K key){
+        return k = key;
+    }
+
     E v(){
         return v;
     }
-   /* public Node(int key,double val ){
-        this.key = key;
-        this.val = val;
 
+    E setV(E val){
+        return v = val;
     }
 
-
-    public int getKey(){
-        return key;
-    }
-
-    public void setKey(int k){
-        key  = k;
-    }
-
-    public double getVal(){
-        return val;
-    }
-
-    public void setVal(double v){
-        val = v;
-    }*/
 
 }

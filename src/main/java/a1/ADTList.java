@@ -1,7 +1,7 @@
 package a1;
 
 /** List ADT */
-public interface ADTList<E> {
+public interface ADTList<K, E> {
 	/** Remove all contents from the list, so it is once again
 	empty. Client is responsible for reclaiming storage
 	used by the list elements. */
@@ -10,12 +10,12 @@ public interface ADTList<E> {
 	/** Insert an element at the current location. The client
 	must ensure that the list’s capacity is not exceeded.
 	@param item The element to be inserted. */
-	public void insert(E item);
+	public void insert(K key, E val);
 	
 	/** Append an element at the end of the list. The client
 	must ensure that the list’s capacity is not exceeded.
 	@param item The element to be appended. */
-	public void append(E item);
+	public void append(K key, E val);
 	
 	/** Remove and return the current element.
 	@return The element that was removed. */
