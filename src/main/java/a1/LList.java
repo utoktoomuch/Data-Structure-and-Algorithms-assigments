@@ -3,13 +3,13 @@ package a1;
 /** Linked list implementation */
 public class LList<K,E> implements ADTList<K, E> {
 	
-	private Node<K,E> head; // Pointer to list header
+	public Node<K,E> head; // Pointer to list header
 	
-	private Node<K,E> tail; // Pointer to last element
+	public Node<K,E> tail; // Pointer to last element
 	
 	protected Node<K,E> curr; // Access to current element
 	
-	private int cnt; // length of list
+	public int cnt; // length of list
 	
 	/** Constructors */
 	public LList(int size) { this(); } // Constructor -- Ignore size
@@ -77,7 +77,9 @@ public class LList<K,E> implements ADTList<K, E> {
 	
 	/** Move curr one step right; no change if now at end */
 	public void next(){ 
-		if (curr != tail) curr = curr.next(); 
+
+		if (curr != tail)
+			curr = curr.next();
 	}
 	
 	/** @return List length */

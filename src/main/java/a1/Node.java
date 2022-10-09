@@ -1,9 +1,9 @@
 package a1;
 
 public class Node<K,E> {
-    private K k;
-    private E v;
-    private Node<K,E> next;
+    private K k; // key for this node
+    private E v; // value for this node
+    private Node<K,E> next; // pointer to next node
 
     Node(K key, E val, Node<K, E> nextval){
         k = key;
