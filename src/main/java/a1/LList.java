@@ -1,4 +1,4 @@
-package coen352.ch4.list;
+package a1;
 
 /** Linked list implementation */
 public class LList<E> implements ADTList<E> {
