@@ -2,7 +2,7 @@ package a1;
 
 import java.sql.SQLOutput;
 
-public class AList<K, E> implements ADTDictionary<K,E>{
+public class AList<K, E> implements ADTList<K,E>{
 
     private Node<K, E> head;
     private Node<K,E> tail;
