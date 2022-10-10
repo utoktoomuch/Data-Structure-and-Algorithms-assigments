@@ -55,7 +55,7 @@ public class DLList<K,E> implements ADTList<K,E>{
         if (curr.next() == tail) return null; // Nothing to remove
         E it = curr.next().v();      // Remember value
         curr.next().next().setPrev(curr);
-        curr.setNext(curr.next().next());  // Remove from list
+        curr.setNext(curr.next().next());// Remove from list
         cnt--;			     // Decrement the count
         return it;                         // Return value removed
     }

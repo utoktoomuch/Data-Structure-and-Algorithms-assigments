@@ -26,11 +26,17 @@ public class LLDictionary<K, E> implements ADTDictionary<K,E> {
 
     /** Remove function*/
     public E remove(K k){
-        Node<K,E> prev = null;
+        /**list.remove();
+
+
+        return list.getValue();*/
+      Node<K,E> prev = null;
         if(list.head != null && list.head.k() == k){ // if head contains the key
-            E e = list.head.v();
-            list.head = list.head.next();
+            E e = list.head.v(); //saves the value
+            list.head = list.head.next(); //makes new head
+            list.remove();
             System.out.println(e + " was the value of the head node removed");
+            list.cnt--;
             return e;
         }
 
@@ -43,6 +49,7 @@ public class LLDictionary<K, E> implements ADTDictionary<K,E> {
         if(list.head == k){
             list.head.setNext(list.head.next().next());
             System.out.println(list.head.v()+ " was the value of the node removed");
+            list.cnt--;
             return list.head.v();
         }
         return null;

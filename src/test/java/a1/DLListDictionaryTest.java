@@ -5,14 +5,14 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class LLDictionaryTest {
+class DLListDictionaryTest {
 
-    private static LLDictionary<Integer,Double> dict;
+    private static DLListDictionary<Integer,Double> dict;
 
     @BeforeAll
 
     public static void setUp() {
-        dict = new LLDictionary<Integer,Double>();
+        dict = new DLListDictionary<Integer,Double>();
         //dict = new LLDictionary<String, InventoryRecord>(10);
     }
 
@@ -33,14 +33,19 @@ class LLDictionaryTest {
     }
 
     @Test
-    void removeAny() {
+    void remove() {
         dict.clear();
-        dict.insert(0, 2.5);
-        dict.insert(1,30000.9 );
-        dict.insert(2,77.82);
-        dict.insert(3, 6.9);
-        assertEquals(2.5, dict.removeAny(), "removeAny failed");
+        dict.insert(0, 6.7);
+        dict.insert(1, 3.3);
+        dict.insert(2, 7.89);
+        dict.insert(3, 1.234);
+        dict.remove(1);
 
+        assertEquals(3, dict.size(), "remove failed");
+    }
+
+    @Test
+    void removeAny() {
     }
 
     @Test
@@ -60,22 +65,8 @@ class LLDictionaryTest {
     void size() {
         dict.clear();
         dict.insert(0, 7.6);
+        dict.insert(60, 7.62);
 
-        assertEquals(1, dict.size(), "size failed, size is not as expected");
-    }
-    @Test
-    void testRemove() {
-
-        dict.clear();
-        dict.insert(0, 6.7);
-        dict.insert(1, 3.3);
-        dict.insert(2, 7.89);
-        dict.insert(3, 1.234);
-        dict.insert(4, 5.234);
-        dict.remove(1);
-
-        assertEquals(3, dict.size(), "remove failed");
-
-
+        assertEquals(2, dict.size(), "size failed, size is not as expected");
     }
 }
