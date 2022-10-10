@@ -5,13 +5,13 @@ public class Node<K,E> {
     private E v; // value for this node
     private Node<K,E> next; // pointer to next node
 
-    Node(K key, E val, Node<K, E> nextval){
+    Node(K key, E val, Node<K, E> nextval){ //constructor
         k = key;
         v = val;
         next = nextval;
 
     }
-
+    /** Set & Get functions for the data members*/
     Node(Node<K,E> nextval){
         next = nextval;
     }
