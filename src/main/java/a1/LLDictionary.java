@@ -15,11 +15,7 @@ public class LLDictionary<K, E> implements ADTDictionary<K,E> {
 
     /** Clean */
     public void clear(){
-<<<<<<< HEAD
-        list.clear();
-=======
         list.clear(); //uses the clear function implemented for the LList.java file.
->>>>>>> 8889e829da9c52e5967019a9a1965e88f8d4a9b4
     }
 
     /** Insert */
