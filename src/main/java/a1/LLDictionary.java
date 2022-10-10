@@ -15,9 +15,7 @@ public class LLDictionary<K, E> implements ADTDictionary<K,E> {
 
     /** Clean */
     public void clear(){
-        list.head.setNext(null);
-        list.curr = list.tail = list.head =new Node<K,E>(null);
-        list.cnt = 0;
+        list.clear();
     }
 
     /** Insert */
