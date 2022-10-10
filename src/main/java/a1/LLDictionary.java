@@ -6,7 +6,7 @@ import java.sql.SQLOutput;
 
 public class LLDictionary<K, E> implements ADTDictionary<K,E> {
 
-    private LList<K,E> list;
+    private LList<K,E> list = new LList<>();
 
     /** Constructors */
      LLDictionary(){
@@ -49,14 +49,25 @@ public class LLDictionary<K, E> implements ADTDictionary<K,E> {
     }
 
     public E removeAny(){
-        if(list.curr.next() == null) {
+        Node<K,E> temp = null;
+        Node<K,E> curr = list.head;
+        Node<K,E> prev = null;
 
-            E e = list.curr.v();
-            list.cnt--;
-            return e;
-        } else{
+        if(list.head == null){ // if there's only one at head
             return null;
         }
+        if(list.head.next() == null) {
+            temp = list.head;
+            list.head = list.head.next();
+            list.cnt--;
+            return temp.v();
+        }
+        while(curr.next() != null){
+            prev = curr;
+            curr = curr.next();
+        }
+        prev.setNext(null);
+        return curr.v();
     }
 
     public E find(K k){

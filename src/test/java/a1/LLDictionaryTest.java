@@ -24,17 +24,41 @@ class LLDictionaryTest {
 
     @Test
     void insert() {
+        dict.clear();
+        dict.insert(0, 2.5);
+        dict.insert(1,30000.9 );
+        dict.insert(2,77.82);
+        dict.insert(3, 6.9);
+        assertEquals(4, dict.size(), "insert failed, size is not as expected");
     }
 
     @Test
     void removeAny() {
+        dict.clear();
+        dict.insert(0, 2.5);
+        dict.insert(1,30000.9 );
+        dict.insert(2,77.82);
+        dict.insert(3, 6.9);
+        assertEquals(2.5, dict.removeAny(), "removeAny failed");
+
     }
 
     @Test
     void find() {
+        dict.clear();
+        dict.insert(0, 2.5);
+        dict.insert(1,30000.9 );
+        dict.insert(2,77.82);
+        dict.insert(3, 6.9);
+
+        assertEquals(6.9, dict.find(3), "find failed");
     }
 
     @Test
     void size() {
+        dict.clear();
+        dict.insert(0, 7.6);
+
+        assertEquals(1, dict.size(), "size failed, size is not as expected");
     }
 }
