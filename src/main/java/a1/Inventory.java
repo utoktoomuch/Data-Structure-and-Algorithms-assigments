@@ -21,7 +21,7 @@ public class Inventory<Desc,Bin,Location,Unit,Qty,ReorderQty,Cost,InValue> {
     private Double cost;
     private Double invalue;
 
-    Inventory( String d, String b, String l, String u, Integer q, Integer r, Double c, Double i){ // Constructor
+   public Inventory( String d, String b, String l, String u, Integer q, Integer r, Double c, Double i){ // Constructor
         desc = d;
         bin = b;
         location = l;
@@ -68,6 +68,9 @@ public class Inventory<Desc,Bin,Location,Unit,Qty,ReorderQty,Cost,InValue> {
     public void setI(Double i){ this.invalue = i;}
 
 
+    public double totalValue(){
+       return 0.0;
+    }
 
    /** public static void main(String[] args) {
         Inventory inv = new Inventory("0", "0" , "0", "0", 0, 0, 0.0, 0.0);

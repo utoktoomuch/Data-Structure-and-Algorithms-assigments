@@ -22,9 +22,29 @@ public class DLListDictionary<K,E> implements ADTDictionary<K,E> {
     }
 
     public E remove(K k){
-        list.remove();
-        System.out.println(list.getValue() + "<--- pls be correct");
-        return list.getValue();
+        DNode<K, E> curr = list.head;
+        DNode<K, E> tmp = null;
+
+        if (curr != null &&  curr.k() == k){
+            list.remove();
+            list.cnt--;
+            return curr.v();
+        }
+        while(curr != null && curr.k() != k){
+            tmp = curr;
+            curr = curr.next();
+            if(curr == null){
+                list.remove();
+                list.cnt--;
+                return curr.v();
+            }
+
+        }
+        list.cnt--;
+
+        tmp.setNext(curr.next());
+        tmp.setPrev(curr.prev());
+        return null;
        /** DNode<K,E> prev = null;
 
         if(list.head != null && list.head.k() == k){ // if head contains the key for removal
@@ -51,7 +71,15 @@ public class DLListDictionary<K,E> implements ADTDictionary<K,E> {
     }
 
     public E removeAny(){
-        return null;
+        if(list.head != null){
+            E tmp = list.getValue();
+            list.remove();
+            System.out.println(tmp +" was the value of the current node removed");
+            return tmp;
+
+        } else{
+            return null;
+        }
     }
 
     public E find(K k){

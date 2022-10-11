@@ -40,13 +40,23 @@ class DLListDictionaryTest {
         dict.insert(2, 7.89);
         dict.insert(3, 1.234);
         dict.remove(1);
+        dict.find(0);
+        dict.find(1);
+        dict.find(2);
+        dict.find(3);
 
         assertEquals(3, dict.size(), "remove failed");
     }
 
     @Test
     void removeAny() {
-
+        dict.clear();
+        dict.insert(0, 2.5);
+        dict.insert(1,30000.9 );
+        dict.insert(2,77.82);
+        dict.insert(3, 6.9);
+        dict.removeAny();
+        assertEquals(3, dict.size(), "removeAny failed");
     }
 
     @Test

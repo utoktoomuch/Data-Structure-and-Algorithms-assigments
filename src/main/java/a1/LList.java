@@ -9,7 +9,7 @@ public class LList<K,E> implements ADTList<K, E> {
 	
 	protected Node<K,E> curr; // Access to current element
 	
-	public int cnt; // length of list
+	public static int cnt; // length of list
 	
 	/** Constructors */
 	public LList(int size) { this(); } // Constructor -- Ignore size
@@ -49,6 +49,7 @@ public class LList<K,E> implements ADTList<K, E> {
 			return null; // Nothing to remove
 		
 		E val = curr.next().v(); // Remember value
+		K key = curr.next().k();
 		
 		if (tail == curr.next()) 
 			tail = curr; // Removed last

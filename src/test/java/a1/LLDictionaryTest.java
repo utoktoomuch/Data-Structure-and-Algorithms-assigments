@@ -39,7 +39,8 @@ class LLDictionaryTest {
         dict.insert(1,30000.9 );
         dict.insert(2,77.82);
         dict.insert(3, 6.9);
-        assertEquals(2.5, dict.removeAny(), "removeAny failed");
+        dict.removeAny();
+        assertEquals(3, dict.size(), "removeAny failed");
 
     }
 
@@ -72,9 +73,14 @@ class LLDictionaryTest {
         dict.insert(2, 7.89);
         dict.insert(3, 1.234);
         dict.insert(4, 5.234);
-        dict.remove(1);
+        dict.remove(3);
+        dict.find(0);
+        dict.find(1);
+        dict.find(2);
+        dict.find(3);
+        dict.find(4);
 
-        assertEquals(3, dict.size(), "remove failed");
+        assertEquals(4, dict.size(), "remove failed");
 
 
     }
