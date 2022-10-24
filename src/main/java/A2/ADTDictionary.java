@@ -6,7 +6,7 @@
 
 /** The Dictionary abstract class. */
 
-package a1;
+package coen352.ch5.tttree;
 
 public interface ADTDictionary<K, E> {
 
@@ -35,7 +35,4 @@ public interface ADTDictionary<K, E> {
 
   /** @return the number of records in the dictionary. */
   public int size();
-
-  /** Array-based, LInked-list or Doubly Linked-list implementation */
-  public E[] createIndex(String attribute);
 };
