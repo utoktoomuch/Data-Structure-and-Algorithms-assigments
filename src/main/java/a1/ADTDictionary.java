@@ -35,7 +35,4 @@ public interface ADTDictionary<K, E> {
 
   /** @return the number of records in the dictionary. */
   public int size();
-
-  /** Array-based, LInked-list or Doubly Linked-list implementation */
-  public E[] createIndex(String attribute);
 };
