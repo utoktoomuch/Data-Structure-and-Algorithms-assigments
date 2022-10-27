@@ -1,6 +1,6 @@
 package A2;
 
-import a1.ADTList;
+import A2.ADTList;
 
 /** Linked list implementation */
 public class LList<K,E> implements ADTList<K, E> {

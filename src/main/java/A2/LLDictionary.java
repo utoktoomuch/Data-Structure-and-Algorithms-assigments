@@ -3,7 +3,7 @@
 package A2;
 
 
-import a1.ADTDictionary;
+import A2.ADTDictionary;
 
 public class LLDictionary<K, E> implements ADTDictionary<K,E> {
 
@@ -139,19 +139,8 @@ public class LLDictionary<K, E> implements ADTDictionary<K,E> {
         return list.length();
     }
 
-    /*public int find(LList<K, E> list, K k) {
-
-        int orgCurr = list.currPos();
-        int pos = 0;
-        for(;pos<list.length();pos++) {
-            list.moveToPos(pos);
-            if (k == list.curr.k()) {
-                break;
-            }
-
-        }
-        list.moveToPos(orgCurr);
-        return pos;
-        // k not found
-    }*/
+    @Override
+    public E[] createIndex(String attribute) {
+        return null;
+    }
 }

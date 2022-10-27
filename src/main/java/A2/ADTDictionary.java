@@ -6,7 +6,7 @@
 
 /** The Dictionary abstract class. */
 
-package coen352.ch5.tttree;
+package A2;
 
 public interface ADTDictionary<K, E> {
 
