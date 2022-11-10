@@ -43,8 +43,11 @@ class WarehouseInventoryTest {
         Inventory inv2 = new Inventory("Item 5", "T098" , "Row 3, slot 1", "Each", 12, 10, 26.0, 312.0);
         Inventory inv3 = new Inventory("Item 6", "T345" , "Row 2, slot 1", "Each", 7, 10, 50.0, 350.0);
         inv.insert("YE98762", inv1);
+
         inv.insert("XR23423", inv2);
         inv.insert("PW98762", inv3);
+
+
 
 
         assertEquals(inv3, inv.find("PW98762"), "find failed" );
