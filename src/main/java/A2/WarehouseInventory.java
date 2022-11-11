@@ -80,13 +80,21 @@ public class WarehouseInventory<SKU,Inventory extends Comparable<Inventory>> imp
     }
 
     @Override
-    public Inventory[] createIndex() {
-        List<Node<SKU,Inventory>> newlist = new ArrayList<>();
+    public WarehouseInventory[] createIndex(String attribute) {
+        final WarehouseInventory[] copyInventory = copyInventory();
         int i = 0;
         for (this.InventoryList.moveToStart(); this.InventoryList.curr != null; this.InventoryList.next()){
             newlist.add(new Node<SKU, Inventory>((SKU) Integer.valueOf(i), this.InventoryList.currPos().getData().v()));
         }
         return null;
+    }
+
+    private Inventory[] copyInventory(){
+        int size = InventoryList.length();
+        WarehouseInventory[] copy = new WarehouseInventory[size];
+
+        int i = 0;
+
     }
 
     public void quicksort (List<Node<SKU, Inventory>> InventoryList, int start, int end) {

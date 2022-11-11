@@ -1,61 +1,68 @@
 package A2;
 
-public class Inventory<Desc,Bin,Location,Unit,Qty,ReorderQty,Cost,InValue> {
+public class Inventory<Name,Desc,Price,Qty,InValue,ReorderLevel,ReorderTime, ReorderQty> {
 
+
+    private String name;
     private String desc;
-    private String bin;
-    private String location;
-    private String unit;
+    private Double price;
     private Integer qty;
-    private Integer rqty;
-    private Double cost;
     private Double invalue;
+    private Integer rlevel;
+    private Integer rtime;
+    private Integer rqty;
 
-   public Inventory(String d, String b, String l, String u, Integer q, Integer r, Double c, Double i){ // Constructor
+
+
+   public Inventory(String n, String d, Double p, Integer q, Double i, Integer rl, Integer rt, Integer rq){ // Constructor
+        name = n;
         desc = d;
-        bin = b;
-        location = l;
-        unit = u;
+        price = p;
         qty = q;
-        rqty = r;
-        cost = c;
         invalue = i;
+        rlevel = rl;
+        rtime = rt;
+        rqty = rq;
+
     }
     //get functions below
+    public String n(){
+        return name;
+    }
     public String d(){
         return desc;
     }
-    public String b(){
-        return bin;
-    }
-    public String l(){
-        return location;
-    }
-    public String u() {
-        return unit;
+    public Double p(){
+        return price;
     }
     public Integer q(){
         return qty;
     }
-    public Integer r(){
-        return rqty;
-    }
-    public Double c(){
-        return cost;
-    }
     public Double i(){
         return invalue;
     }
+    public Integer rl(){
+        return rlevel;
+    }
+    public Integer rt() {
+        return rtime;
+    }
+    public Integer rq(){
+        return rqty;
+    }
+
 
     //set functions below
+    public void setN(String n){ this.name = n;}
     public void setD(String d){ this.desc = d;}
-    public void setB(String b){ this.bin = b;}
-    public void setL(String l){ this.location = l;}
-    public void setU(String u){ this.unit = u;}
+    public void setP(Double p){ this.price = p;}
     public void setQ(Integer q){ this.qty = q;}
-    public void setR(Integer r){ this.rqty = r;}
-    public void setC(Double c){ this.cost = c;}
     public void setI(Double i){ this.invalue = i;}
+    public void setRL(Integer rl){ this.rlevel = rl;}
+    public void setRT(Integer rt){ this.rtime = rt;}
+    public void setRQ(Integer rq){ this.rqty = rq;}
+
+
 
 
     public double totalValue(){

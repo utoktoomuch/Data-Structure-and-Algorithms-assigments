@@ -37,5 +37,5 @@ public interface ADTDictionary<K, E> {
   public int size();
 
     /** Array-based, Linked-list or Doubly Linked-list implementation */
-    public E[] createIndex();
+    public E[] createIndex(String attribute);
 };
