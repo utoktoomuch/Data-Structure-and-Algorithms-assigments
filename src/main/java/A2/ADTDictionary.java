@@ -36,6 +36,12 @@ public interface ADTDictionary<K, E> {
   /** @return the number of records in the dictionary. */
   public int size();
 
-    /** Array-based, Linked-list or Doubly Linked-list implementation */
-    public E[] createIndex(String attribute);
+  /** Array-based, Linked-list or Doubly Linked-list implementation */
+  public Inventory[] createIndex(String attribute);
+
+  /** Binary search tree implementation*/
+  public BSTNode<Inventory> createBSTIndex(String attribute);
+
+  /** Query implementation*/
+  public void query(String attribute, double perct);
 };

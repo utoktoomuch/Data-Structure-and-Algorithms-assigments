@@ -1,5 +1,6 @@
 package A2;
 
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
@@ -7,7 +8,9 @@ import java.util.Collections;
 
 public class WarehouseInventory<SKU,Inventory extends Comparable<Inventory>> implements ADTDictionary<SKU, Inventory> {
 
-    //private Inventory inv;
+    private Inventory inv;
+
+
 
     private LList<SKU, Inventory> InventoryList;
 
@@ -80,67 +83,92 @@ public class WarehouseInventory<SKU,Inventory extends Comparable<Inventory>> imp
     }
 
     @Override
-    public WarehouseInventory[] createIndex(String attribute) {
-        final WarehouseInventory[] copyInventory = copyInventory();
-        int i = 0;
-        for (this.InventoryList.moveToStart(); this.InventoryList.curr != null; this.InventoryList.next()){
-            newlist.add(new Node<SKU, Inventory>((SKU) Integer.valueOf(i), this.InventoryList.currPos().getData().v()));
+    public A2.Inventory[] createIndex(String attribute) {
+        final Inventory[] copyInventory = copyInventory();
+
+        if(attribute.equals("UnitPrice")){
+            return null;
+        } else if (attribute.equals("QtyInStock")){
+            return null;
+        } else if (attribute.equals("InvValue")){
+            return null;
+        } else if(attribute.equals("ReorderL")){
+            return null;
+        } else if(attribute.equals("ReorderT")){
+            return null;
+        } else if(attribute.equals("QtyReorder")){
+            return null;
         }
-        return null;
+        return copyInventory;
     }
 
     private Inventory[] copyInventory(){
-        int size = InventoryList.length();
-        WarehouseInventory[] copy = new WarehouseInventory[size];
+
+        Inventory[] copy = new Inventory[InventoryList.length()];
 
         int i = 0;
-
+        for (InventoryList.moveToStart(); InventoryList.currPos() < InventoryList.length(); InventoryList.next()){
+            final Inventory value = InventoryList.getValue();
+            copy[i++] = value;
+        }
+        return copy;
     }
 
-    public void quicksort (List<Node<SKU, Inventory>> InventoryList, int start, int end) {
+    public void quicksort (Inventory[] copy, int start, int end, String attribute) {//ask TA about how to access specific attribute
         int qs;
-
-        if (end > start){
-            qs = partition(InventoryList, start, end);
-            quicksort(InventoryList, start, qs - 1);
-            quicksort(InventoryList, qs + 1, end);
+                                                       //Asymptotic Analysis:
+        if (end > start){                              //Time Complexity: O(nlogn)
+            qs = partition(copy, start, end);          //Space Complexity: O(n)
+            quicksort(copy, start, qs);
+            quicksort(copy, qs + 1, end);
         }
+
     }
 
-    int partition(List<Node<SKU, Inventory>> InventoryList, int start, int end){
-        Inventory P = InventoryList.get(start).v();
+    int partition(Inventory[] copy, int start, int end){
+        Inventory P = copy[start];
         int i = start;
-        int j = end + 1;
 
-        for(;;){
-            while(InventoryList.get(++i).v().compareTo(P) < 0){
-                if (i >= end){
-                    break;
-                }
-            }
-
-            while (InventoryList.get(--j).v().compareTo(P) > 0){
-                if (j <= start){
-                    break;
-                }
-            }
-            if (i >= j){
-                break;
-            } else {
-                Collections.swap(InventoryList, i , j);
+        for(int j = start + 1; j <= end; j++){
+            if(copy[j].compareTo(P) > 0) {
+                i++;
+                Inventory tmp = copy[i];
+                copy[i] = copy[j];
+                copy[j] = tmp;
             }
         }
-        if (j == start){
-            return j;
-        }
-        Collections.swap(InventoryList, start, j);
-        return j;
+        Inventory tmp = copy[i];
+        copy[i] = copy[start];
+        copy[start] = tmp;
+        return i;
+    }
+
+    private void swap(Inventory[] arr, int i, int j){
+        Inventory tmp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = tmp;
 
     }
 
+    @Override
+    public BSTNode<Inventory> createBSTIndex(String attribute){
+
+        //build bst
+
+        return null; //return root of the tree
+    }
+
+    public Inventory[] ascendingOrder(BSTNode<Inventory> root){
+
+        //ascending order result
+        return null;
+    }
+
+    @Override
     public void query(String attribute, double perct){
 
     }
+
 
 }
 
