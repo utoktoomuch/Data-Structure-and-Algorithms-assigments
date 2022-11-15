@@ -48,8 +48,8 @@ public class BSTNode<E> implements BinNode<E> {
         return left;
     }
 
-    public void setLeft(BSTNode<E> p) {
-        left = p;
+    public void setLeft(E p) {
+        left = (BSTNode<E>) p;
     }
 
     /**
@@ -59,8 +59,8 @@ public class BSTNode<E> implements BinNode<E> {
         return right;
     }
 
-    public void setRight(BSTNode<E> p) {
-        right = p;
+    public void setRight(E p) {
+        right = (BSTNode<E>) p;
     }
 
     /**

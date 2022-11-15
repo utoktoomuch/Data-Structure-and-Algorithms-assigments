@@ -1,17 +1,13 @@
 package A2;
 
-import java.lang.reflect.Constructor;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Collections;
+import java.sql.SQLOutput;
 
 public class WarehouseInventory2 implements ADTDictionary<String, Inventory2> {
 
     private Inventory2 inv;
+    private String String;
 
-
-
-    private LList<String, Inventory2> Inventory2List;
+    private LList<String, Inventory2> Inventory2List = new LList<>();
 
     WarehouseInventory2(){
         A2.LList<String, Inventory2> Inventory2List = new A2.LList<>();
@@ -21,8 +17,9 @@ public class WarehouseInventory2 implements ADTDictionary<String, Inventory2> {
         Inventory2List.clear();
     }
 
-    public void insert(String String, Inventory2 Inventory2){
-        Inventory2List.insert(String, Inventory2);
+    public void insert(String string, Inventory2 inventory2){
+        Inventory2List.insert(string, inventory2);
+
     }
 
     public Inventory2 find(String String) {
@@ -86,17 +83,23 @@ public class WarehouseInventory2 implements ADTDictionary<String, Inventory2> {
         final Inventory2[] copyInventory2 = copyInventory();
 
         if(attribute.equals("UnitPrice")){
-            return null;
+            quicksort(copyInventory2,0, copyInventory().length-1, "UnitPrice");
+            return copyInventory2;
         } else if (attribute.equals("QtyInStock")){
-            return null;
+            quicksort(copyInventory2,0, copyInventory().length-1, "QtyInStock");
+            return copyInventory2;
         } else if (attribute.equals("InvValue")){
-            return null;
+            quicksort(copyInventory2,0, copyInventory().length-1, "InvValue");
+            return copyInventory2;
         } else if(attribute.equals("ReorderL")){
-            return null;
+            quicksort(copyInventory2,0, copyInventory().length-1, "ReorderL");
+            return copyInventory2;
         } else if(attribute.equals("ReorderT")){
-            return null;
+            quicksort(copyInventory2,0, copyInventory().length-1, "ReorderT");
+            return copyInventory2;
         } else if(attribute.equals("QtyReorder")){
-            return null;
+            quicksort(copyInventory2,0, copyInventory().length-1, "QtyReorder");
+            return copyInventory2;
         }
         return copyInventory2;
     }
@@ -116,30 +119,64 @@ public class WarehouseInventory2 implements ADTDictionary<String, Inventory2> {
     public void quicksort (Inventory2[] copy, int start, int end, String attribute) {//ask TA about how to access specific attribute
         int qs;
 
-        //Asymptotic Analysis:
-        if (end > start){                              //Time Complexity: O(nlogn)
-            qs = partition(copy, start, end);          //Space Complexity: O(n)
-            quicksort(copy, start, qs);
-            quicksort(copy, qs + 1, end);
+                                                                  //Asymptotic Analysis:
+        if (end > start){                                         //Time Complexity: O(nlogn)
+            qs = partition(copy, start, end, attribute);          //Space Complexity: O(n)
+            quicksort(copy, start, qs, attribute);
+            quicksort(copy, qs + 1, end, attribute);
         }
 
     }
 
-    int partition(Inventory2[] copy, int start, int end){
+
+    int partition(Inventory2[] copy, int start, int end,String attribute){
         Inventory2 P = copy[start];
         int i = start;
 
-        for(int j = start + 1; j <= end; j++){
-            if(copy[j].compareTo(P) > 0) {
-                i++;
-                Inventory2 tmp = copy[i];
-                copy[i] = copy[j];
-                copy[j] = tmp;
+        if(attribute.equals("UnitPrice")) {
+            for (int j = start + 1; j <= end; j++) {
+                if (copy[j].p() > copy[start].p()) {
+                    i++;
+                    swap(copy, i, j);
+                }
+            }
+        } else if (attribute.equals("QtyInStock")) {
+            for (int j = start + 1; j <= end; j++) {
+                if (copy[j].q() > copy[start].q()) {
+                    i++;
+                    swap(copy, i, j);
+                }
+            }
+        } else if (attribute.equals("InvValue")) {
+            for (int j = start + 1; j <= end; j++) {
+                if (copy[j].i() > copy[start].i()) {
+                    i++;
+                    swap(copy, i, j);
+                }
+            }
+        } else if (attribute.equals("ReorderL")) {
+            for (int j = start + 1; j <= end; j++) {
+                if (copy[j].rl() > copy[start].rl()) {
+                    i++;
+                    swap(copy, i, j);
+                }
+            }
+        } else if (attribute.equals("ReorderT")){
+            for (int j = start + 1; j <= end; j++) {
+                if (copy[j].rt() > copy[start].rt()) {
+                    i++;
+                    swap(copy, i, j);
+                }
+            }
+        } else if (attribute.equals("QtyReorder")) {
+            for (int j = start + 1; j <= end; j++) {
+                if (copy[j].rq() > copy[start].rq()) {
+                    i++;
+                    swap(copy, i, j);
+                }
             }
         }
-        Inventory2 tmp = copy[i];
-        copy[i] = copy[start];
-        copy[start] = tmp;
+        swap(copy, i, start);
         return i;
     }
 
@@ -154,24 +191,167 @@ public class WarehouseInventory2 implements ADTDictionary<String, Inventory2> {
     public BSTNode<Inventory2> createBSTIndex(String attribute){
 
         BSTNode<Inventory2> BST = new BSTNode<Inventory2>();
+        final Inventory2[] inventory = copyInventory(); // array of inventories that become BST
 
+       //BST.setElement(inventory[0]); initial root
+        int i = 0;
         if(attribute.equals("UnitPrice")){
-            BST
+            BST.setElement(inventory[i]);
+            for (i = 1; i < inventory.length; i++) {
+                if (inventory[i].p() < inventory[i-1].p() ) {
+                        BST.setLeft(inventory[i]);  //check if this work in unit testing
+                } else {
+                    BST.setRight(inventory[i]); //check if this work in unit testing
+                }
+            }
+            ascendingOrder(BST);
+        } else if (attribute.equals("QtyInStock")) {
+            BST.setElement(inventory[i]);
+            for (i = 1; i < inventory.length; i++) {
+                if (inventory[i].q() < inventory[i-1].q() ) {
+                    BST.setLeft(inventory[i]);
+                } else {
+                    BST.setRight(inventory[i]);
+                }
+            }
+            ascendingOrder(BST);
+        } else if (attribute.equals("InvValue")) {
+            BST.setElement(inventory[i]);
+            for (i = 1; i < inventory.length; i++) {
+                if (inventory[i].i() < inventory[i-1].i() ) {
+                    BST.setLeft(inventory[i]);
+                } else {
+                    BST.setRight(inventory[i]);
+                }
+            }
+            ascendingOrder(BST);
+        } else if (attribute.equals("ReorderL")) {
+            BST.setElement(inventory[i]);
+            for (i = 1; i < inventory.length; i++) {
+                if (inventory[i].rl() < inventory[i-1].rl() ) {
+                    BST.setLeft(inventory[i]);
+                } else {
+                    BST.setRight(inventory[i]);
+                }
+            }
+            ascendingOrder(BST);
+        } else if (attribute.equals("ReorderT")) {
+            BST.setElement(inventory[i]);
+            for (i = 1; i < inventory.length; i++) {
+                if (inventory[i].rt() < inventory[i-1].rt() ) {
+                    BST.setLeft(inventory[i]);
+                } else {
+                    BST.setRight(inventory[i]);
+                }
+            }
+            ascendingOrder(BST);
+        } else if (attribute.equals("QtyReorder")) {
+
+            BST.setElement(inventory[i]);
+            for (i = 1; i < inventory.length; i++) {
+                if (inventory[i].rq() < inventory[i-1].rq() ) {
+                    BST.setLeft(inventory[i]);
+                } else {
+                    BST.setRight(inventory[i]);
+                }
+            }
+            ascendingOrder(BST);
         }
 
-        return null; //return root of the tree
+        return BST; //return root of the tree
     }
 
-    public Inventory2[] ascendingOrder(BSTNode<Inventory2> root){
-
+    public void ascendingOrder(BSTNode<Inventory2> root){
+        inOrderTraversing(root);
         //ascending order result
-        return null;
+        //return null;
+    }
+
+    public void inOrderTraversing(BSTNode<Inventory2> BST){
+        if (BST != null){
+            inOrderTraversing(BST.left());
+            inOrderTraversing(BST.right());
+        }
     }
 
     @Override
     public void query(String attribute, double perct){
+        Inventory2[] qInv = createIndex(attribute);
+        int N = qInv.length;
+        int pivot = (int) (N * perct); //no need for lower bound because int truncates no matter the value after the dot
+
+        if ( attribute.equals("UnitPrice")){
+            if (perct == 0){
+                double result = qInv[0].p();
+                System.out.println("The percentile "+ perct +" of Unit Price is: " + result);
+            } else if (perct == 1){
+                double result = qInv[N-1].p();
+                System.out.println("The percentile "+ perct +" of Unit Price is: " + result);
+            } else {
+                double result = qInv[pivot - 1].p();
+                System.out.println("The percentile "+ perct +" of Unit Price is: " + result);
+            }
+        } else if (attribute.equals("QtyInStock")) {
+            if (perct == 0){
+                int result = qInv[0].q();
+                System.out.println("The percentile "+ perct +" of Quantity in Stock is: " + result);
+            } else if (perct == 1){
+                int result = qInv[N-1].q();
+                System.out.println("The percentile "+ perct +" of Quantity in Stock is: " + result);
+            } else {
+                int result = qInv[pivot - 1].q();
+                System.out.println("The percentile "+ perct +" of Quantity in Stock is: " + result);
+            }
+        } else if (attribute.equals("InvValue")){
+            if (perct == 0){
+                double result = qInv[0].i();
+                System.out.println("The percentile "+ perct +" of Inventory Value is: " + result);
+            } else if (perct == 1){
+                double result = qInv[N-1].i();
+                System.out.println("The percentile "+ perct +" of Inventory Value is: " + result);
+            } else {
+                double result = qInv[pivot - 1].i();
+                System.out.println("The percentile "+ perct +" of Inventory Value is: " + result);
+            }
+        } else if (attribute.equals("ReorderL")) {
+            if (perct == 0){
+                int result = qInv[0].rl();
+                System.out.println("The percentile "+ perct +" of Reorder Level is: " + result);
+            } else if (perct == 1){
+                int result = qInv[N-1].rl();
+                System.out.println("The percentile "+ perct +" of Reorder Level is: " + result);
+            } else {
+                int result = qInv[pivot - 1].rl();
+                System.out.println("The percentile "+ perct +" of Reorder Level is: " + result);
+            }
+        } else if (attribute.equals("ReorderT")) {
+            if (perct == 0){
+                int result = qInv[0].rt();
+                System.out.println("The percentile "+ perct +" of Reorder Time is: " + result);
+            } else if (perct == 1){
+                int result = qInv[N-1].rt();
+                System.out.println("The percentile "+ perct +" of Reorder Time is: " + result);
+            } else {
+                int result = qInv[pivot - 1].rt();
+                System.out.println("The percentile "+ perct +" of Reorder Time is: " + result);
+            }
+        } else if (attribute.equals("QtyReorder")) {
+            if (perct == 0){
+                int result = qInv[0].rq();
+                System.out.println("The percentile "+ perct +" of Reorder Quantity is: " + result);
+            } else if (perct == 1){
+                int result = qInv[N-1].rq();
+                System.out.println("The percentile "+ perct +" of Reorder Quantity is: " + result);
+            } else {
+                int result = qInv[pivot - 1].rq();
+                System.out.println("The percentile "+ perct +" of Reorder Quantity is: " + result);
+            }
+        } else {
+            System.out.println("Invalid attribute, please type an attribute that is an integer or double");
+        }
 
     }
+
 
 
 }
