@@ -37,10 +37,10 @@ public interface ADTDictionary<K, E> {
   public int size();
 
   /** Array-based, Linked-list or Doubly Linked-list implementation */
-  public Inventory[] createIndex(String attribute);
+  public E[] createIndex(String attribute);
 
   /** Binary search tree implementation*/
-  public BSTNode<Inventory> createBSTIndex(String attribute);
+  public BSTNode<E> createBSTIndex(String attribute);
 
   /** Query implementation*/
   public void query(String attribute, double perct);

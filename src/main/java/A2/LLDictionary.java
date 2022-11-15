@@ -140,7 +140,17 @@ public class LLDictionary<K, E> implements ADTDictionary<K,E> {
     }
 
     @Override
-    public A2.Inventory[] createIndex(String attribute) {
+    public E[] createIndex(String attribute) {
         return null;
+    }
+
+    @Override
+    public BSTNode<E> createBSTIndex(String attribute) {
+        return null;
+    }
+
+    @Override
+    public void query(String attribute, double perct) {
+
     }
 }

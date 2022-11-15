@@ -1,6 +1,6 @@
 package A2;
 
-public class Inventory<Name,Desc,Price,Qty,InValue,ReorderLevel,ReorderTime, ReorderQty> {
+public class Inventory2 {
 
 
     private String name;
@@ -12,9 +12,10 @@ public class Inventory<Name,Desc,Price,Qty,InValue,ReorderLevel,ReorderTime, Reo
     private Integer rtime;
     private Integer rqty;
 
+    public Inventory2() {
+    }
 
-
-   public Inventory(String n, String d, Double p, Integer q, Double i, Integer rl, Integer rt, Integer rq){ // Constructor
+    public Inventory2(String n, String d, Double p, Integer q, Double i, Integer rl, Integer rt, Integer rq){ // Constructor
         name = n;
         desc = d;
         price = p;
