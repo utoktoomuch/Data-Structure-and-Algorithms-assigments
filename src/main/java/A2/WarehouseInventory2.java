@@ -276,7 +276,9 @@ public class WarehouseInventory2 implements ADTDictionary<String, Inventory2> {
 
     @Override
     public void query(String attribute, double perct){
+
         Inventory2[] qInv = createIndex(attribute);
+
         int N = qInv.length;
         int pivot = (int) (N * perct); //no need for lower bound because int truncates no matter the value after the dot
 

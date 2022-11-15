@@ -44,11 +44,11 @@ class WarehouseInventory2Test {
 
         // Inventory is indexed in descending order so [0] is the biggest ...[N] is the smallest
         inv.query("QtyInStock", 0.0);
-        // we should get 5 as the result
+        // we should get 62.0 as the result
         //assertEquals(5, inv.query("QtyInStock", 0.5), "failed blah blah");
 
         inv.query("UnitPrice", 0.7);
-        // we should get 11 as the result
+        // we should get 51.0 as the result since it's in descending order
     }
 
 }
