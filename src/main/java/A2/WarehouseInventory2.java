@@ -188,7 +188,7 @@ public class WarehouseInventory2 implements ADTDictionary<String, Inventory2> {
     }
 
     @Override
-    public BSTNode<Inventory2> createBSTIndex(String attribute){
+   /* public BSTNode<Inventory2> createBSTIndex(String attribute){
 
         BSTNode<Inventory2> BST = new BSTNode<Inventory2>();
         final Inventory2[] inventory = copyInventory(); // array of inventories that become BST
@@ -218,6 +218,7 @@ public class WarehouseInventory2 implements ADTDictionary<String, Inventory2> {
         } else if (attribute.equals("InvValue")) {
             BST.setElement(inventory[i]);
             for (i = 1; i < inventory.length; i++) {
+                for (i=)
                 if (inventory[i].i() < inventory[i-1].i() ) {
                     BST.setLeft(inventory[i]);
                 } else {
@@ -259,7 +260,25 @@ public class WarehouseInventory2 implements ADTDictionary<String, Inventory2> {
         }
 
         return BST; //return root of the tree
-    }
+    }*/
+
+   /** private BSTNode addRecursive(Inventory2[] arr,BSTNode current, String attribute,int i){
+        if(current==null){
+            return new BSTNode(attribute);
+        }
+
+        if (attribute.equals("UnitPrice")){
+            if(arr[i+1].p() < arr[i].p()){
+                current.setLeft(addRecursive(arr,current.left(),attribute,i));
+            }
+            else if (arr[i+1].p() > arr[i].p()){
+                current.setRight(addRecursive(arr,current.right(),attribute,i));
+            } else {
+                return current;
+            }
+        }
+        return current;
+    }**/
 
     public void ascendingOrder(BSTNode<Inventory2> root){
         inOrderTraversing(root);
