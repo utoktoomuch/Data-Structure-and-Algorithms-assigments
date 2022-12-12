@@ -187,7 +187,10 @@ public class WarehouseInventory2 implements ADTDictionary<String, Inventory2> {
 
     }
 
-    @Override
+    public BSTNode<Inventory2> createBSTIndex(String attribute){
+        return null;
+    }
+
    /* public BSTNode<Inventory2> createBSTIndex(String attribute){
 
         BSTNode<Inventory2> BST = new BSTNode<Inventory2>();

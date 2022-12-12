@@ -1,8 +1,7 @@
 # Graph example from book for DFS/BFS, MST: Figure 7.10
-27               # Number of vertices
+29               # Number of vertices
 D                # Directed graph
-                 # List of Edges
-COEN352 SOEN341
+COEN352 SOEN341  # List of Edges
 SOEN341 COEN448
 MATH204 COEN212
 MATH204 COEN231
@@ -39,4 +38,3 @@ COEN320 COEN421
 COEN366 COEN446
 COEN366 COEN447
 COEN390 COEN490
-COEN498

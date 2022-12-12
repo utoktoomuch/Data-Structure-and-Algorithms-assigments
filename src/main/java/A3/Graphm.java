@@ -1,17 +1,22 @@
 package A3;
 
+import java.sql.SQLOutput;
+import java.util.Queue;
+import java.io.*;
+
 /** Source code example for "A Practical Introduction to Data
     Structures and Algorithm Analysis, 3rd Edition (Java)" 
     by Clifford A. Shaffer
     Copyright 2008-2011 by Clifford A. Shaffer
 */
 
-class Graphm implements Graph { // Graph: Adjacency matrix
+class Graphm implements Graph { // Graph: Adjacency matrix that stores mapped index at position [i][j] number 0-28
   private int[][] matrix;                // The edge matrix
   private int numEdge;                   // Number of edges
   public int[] Mark;                     // The mark array
   public int[] Count;
-  
+
+
   
   public Graphm() {}
   public Graphm(int n) {                 // Constructor
@@ -43,25 +48,17 @@ class Graphm implements Graph { // Graph: Adjacency matrix
   }
 
   public boolean isEdge(int i, int j) // Is (i, j) an edge?
-    { return matrix[i][j] != 0; }
+    { return matrix[i][j] == i; }
   
   // Set edge weight
   public void setEdge(int i, int j, int wt) {
-    assert wt!=0 : "Cannot set weight to 0";
     if (matrix[i][j] == 0) numEdge++;
     matrix[i][j] = wt;
   }
 
-  public void delEdge(int i, int j) { // Delete edge (i, j)
-    if (matrix[i][j] != 0) {
-      matrix[i][j] = 0;
-      numEdge--;
-    }
-  }
+
 
   public int weight(int i, int j) { // Return edge weight
-    if (i == j) return 0;
-    if (matrix[i][j] == 0) return Integer.MAX_VALUE;
     return matrix[i][j];
   }
 
@@ -70,4 +67,37 @@ class Graphm implements Graph { // Graph: Adjacency matrix
   public int getMark(int v) { return Mark[v]; }
   
   public int incrCount(int w) {return ++Count[w];}
+
+  public String getPrerequisitePath(String courseCode){
+      Course coen = new Course();
+      coen.mapInit();
+
+
+
+
+
+
+
+    return null;
+  }
+
+  public boolean isPrerequisite(String sourceCourse, String destinationCourse) {
+      Course coen = new Course();
+      coen.mapInit();
+
+      int node1 = coen.course.get(sourceCourse);
+      int node2 = coen.course.get(destinationCourse);
+
+      if(isEdge(node1,node2)){
+          System.out.println(  sourceCourse + " is a prerequisite of " + destinationCourse + "." );
+        return true;
+      }
+      else{
+          System.out.println( sourceCourse + " is not a prerequisite of " + destinationCourse + "." );
+        return false;
+      }
+  }
+
+
+
 }
